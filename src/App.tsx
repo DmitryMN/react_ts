@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import {Card, CardVariant} from './components/Card';
+import { UserList } from './components/UserList';
+import { UserType } from './types/types';
+
 
 function App() {
+
+  const [users, setUsers] = useState<UserType[]>([]);
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  async function fetchUsers() {
+    try {
+      const res = axios.get<UserType[]>('https://jsonplaceholder.typicode.com/users');
+      setUsers([...(await res).data])
+    } catch(e) {
+      alert(e)
+    } 
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Работает!
+      <Card width='200px' height='100px' variant={CardVariant.primary}>
+        <button>кнопка</button>
+      </Card>
+      <UserList users={users}/>
     </div>
   );
 }
