@@ -2,10 +2,15 @@ import React from 'react'
 
 type ListPropsType<T> = {
     items: T[]
+    renderItem: (item: T) => React.ReactNode
 }
 
-export const List: React.FC = () => {
+function List<T>(props: ListPropsType<T>) {
   return (
-    <div>List</div>
+    <div>
+        { props.items.map(props.renderItem) }
+    </div>
   )
 }
+
+export default List;

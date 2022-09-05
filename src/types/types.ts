@@ -11,3 +11,9 @@ export type UserType = {
     email: string
     address: AdressType
 }
+
+export type TodoType = {
+    id: number
+    title: string
+    completed: boolean
+}
