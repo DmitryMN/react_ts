@@ -8,8 +8,6 @@ type UserListPropsType = {
 
 export const UserList: React.FC<UserListPropsType> = ({ users }) => {
     return (
-        <div>
-            {users.map(user => <UserItem key={user.id} user={user} />) }
-        </div>
+        <div></div>
     )
 }
